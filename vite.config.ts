@@ -1,22 +1,12 @@
-import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
-import path from "path";
-import { componentTagger } from "lovable-tagger";
-import { nitro } from "nitro/vite"; // <--- Add this import line!
+import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-export default defineConfig(({ mode }) => ({
-  server: {
-    host: "::",
-    port: 8080,
+export default defineConfig({
+  vite: {
+    plugins: [
+      // This is exactly how the new Lovable config wants Nitro injected
+      require("nitro/vite").nitro({
+        preset: "vercel",
+      }),
+    ],
   },
-  plugins: [
-    react(),
-    mode === 'development' && componentTagger(),
-    nitro({ preset: "vercel" }), // <--- Add Nitro right here!
-  ].filter(Boolean),
-  resolve: {
-    alias: {
-      "@": path.resolve(__dirname, "./src"),
-    },
-  },
-}));
+});

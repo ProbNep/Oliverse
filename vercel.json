@@ -1,8 +1,0 @@
-{
-  "rewrites": [
-    { 
-      "source": "/(.*)", 
-      "destination": "C:\Users\ryaja\OneDrive\Desktop\oliverse\src\components\oliverse\LoginScene.tsx" 
-    }
-  ]
-}
